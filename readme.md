@@ -1,1 +1,1 @@
-<ruby>漢字<rp>【</rp><rt>かんじ</rt><rp>】
+<ruby>漢字<rt>かんじ</rt></ruby>
