@@ -1,32 +1,91 @@
 import styles from "./Select.module.css"
+import { useEffect, useState } from 'react';
 
-const { container } = styles
+const { container, show, selectPlaceholder } = styles
 
 type SelectOption = {
-    value: string | number,
+    value: string,
     label: string
 }
 
-type SelectProps = {
-    options: SelectOption[]
+type singleSelectProps = {
+    multiple?: false,
     value?: SelectOption,
     onChange: (value: SelectOption | undefined) => void,
-    styling?: object
 }
 
-export const Select = ({ value, onChange, options, styling }: SelectProps) => {
+type multiSelectProps = {
+    multiple: true,
+    value: SelectOption[],
+    onChange: (value: SelectOption[]) => void,
+}
+
+type SelectProps = {
+    styling?: {},
+    placeholder?: string,
+    options: SelectOption[],
+} & (singleSelectProps | multiSelectProps)
+
+export const Select = ({ multiple, styling, value, onChange, options, placeholder }: SelectProps) => {
+    const [isOpen, setisOpen] = useState<boolean>(false)
+    const [isSelected, setisSelected] = useState<number>(0)
+
+    const handleSelectOpen = () => {
+        setisOpen(!isOpen)
+    }
+
+    const handleSelectOption = (e: any, option: SelectOption) => {
+        e.stopPropagation()
+        if (multiple) {
+            if (value.includes(option)) {
+                setisOpen(false)
+                return
+            } else {
+                onChange([...value, option])
+            }
+        } else {
+            if (option !== value) onChange(option)
+        }
+        setisOpen(false)
+    }
+
+
+    const handleClearValue = (e: any) => {
+        e.stopPropagation()
+        multiple ? onChange([]) : onChange(undefined)
+    }
+
     return (
         <>
-            <div className={container}>
-                <span className={styles["select-value"]}>Value</span>
+            <div
+                tabIndex={0}
+                onBlur={() => setisOpen(false)}
+                onClick={handleSelectOpen} className={container}>
+                {
+                    multiple ? 
+                    value.length > 0  ? value.map((single) => <span className={styles["select-value"]} key={single.value}>{single?.label}</span>) 
+                    : <span className={selectPlaceholder}>{placeholder}</span>
+                    : value ? <span className={styles["select-value"]}>{value?.label}</span>
+                    : <span className={selectPlaceholder}>{placeholder}</span>
+                }
+                
                 <div className={styles["right-icons-wrapper"]}>
-                    <button className={styles["del-icon"]}>&times;</button>
+                    <button
+                        onClick={(e) => handleClearValue(e)}
+                        className={styles["del-icon"]}>&times;</button>
                     <div className={styles["middle-line"]}></div>
                     <div className={styles["dropdown-indicator"]}></div>
-                    <ul className={styles.options}>
-                        {options.map((option) => {
+                    <ul className={`${styles.options} ${isOpen && show}`}>
+                        {options.map((option, idx) => {
                             return (
-                                <li className={styles["single-option"]} key={option.value}>{option.label}</li>
+                                <li
+                                    onClick={(e) => {
+                                        setisSelected(idx)
+                                        handleSelectOption(e, option)
+                                    }}
+                                    className={`${styles["single-option"]}
+                                    ${isSelected === idx && styles.selected}
+                                    `} key={option.value}>{option.label}</li>
                             )
                         })}
                     </ul>
