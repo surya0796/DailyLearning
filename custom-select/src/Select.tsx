@@ -54,6 +54,13 @@ export const Select = ({ multiple, styling, value, onChange, options, placeholde
         e.stopPropagation()
         multiple ? onChange([]) : onChange(undefined)
     }
+    const clearSelectedValue = (e:any,clickedValue:SelectOption)=>{
+        e.stopPropagation()
+        if(multiple){
+            const newValue =  value?.filter((o:SelectOption) =>o!==clickedValue) 
+            onChange([...newValue])
+        }
+    }
 
     return (
         <>
@@ -63,7 +70,14 @@ export const Select = ({ multiple, styling, value, onChange, options, placeholde
                 onClick={handleSelectOpen} className={container}>
                 {
                     multiple ? 
-                    value.length > 0  ? value.map((single) => <span className={styles["select-value"]} key={single.value}>{single?.label}</span>) 
+                    value.length > 0  ? 
+                    <div className={styles["multi-value-container"]}>{
+                        value.map((single) => <span className={styles["multi-select-value"]} key={single.value}>{single?.label}
+                         <button
+                        onClick={(e) => clearSelectedValue(e,single)}
+                        className={styles["del-icon"]}>&times;</button>
+                        </span>) 
+                    }</div>
                     : <span className={selectPlaceholder}>{placeholder}</span>
                     : value ? <span className={styles["select-value"]}>{value?.label}</span>
                     : <span className={selectPlaceholder}>{placeholder}</span>
