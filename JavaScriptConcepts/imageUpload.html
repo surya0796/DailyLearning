@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Image</title>
+  <style>
+    div {
+      width: 100%;
+      height: 300px;
+
+    }
+  </style>
+</head>
+
+<body>
+  <input type="file" id="choose-file" accept="image/jpeg image/png image/jpg image/svg">
+  <div id="view-image"></div>
+
+
+  <div id="display-image"></div>
+  <script>
+    const input = document.querySelector("#choose-file")
+    const imgContainer = document.querySelector("#view-image")
+     input.addEventListener('change',function(){
+        const reader = new FileReader()
+        reader.addEventListener('load',function(){
+            var img = reader.result;
+            imgContainer.style.background = `url(${img})`
+        })
+        reader.readAsDataURL(this.files[0])
+     })
+    // const image_input = document.querySelector("#image-input");
+
+    // image_input.addEventListener("change", function () {
+    //   const reader = new FileReader();
+    //   reader.addEventListener("load", () => {
+    //     const uploaded_image = reader.result;
+    //     document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
+    //   });
+    //   reader.readAsDataURL(this.files[0]);
+    // });
+
+  </script>
+</body>
+
+</html>
