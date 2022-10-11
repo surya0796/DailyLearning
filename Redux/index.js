@@ -1,5 +1,3 @@
-console.clear()
-
 const { createStore , combineReducers } = Redux
 
 // Action creators
@@ -12,6 +10,7 @@ const createPolicy = (name,policyAmount) => {
         }
     }
 }
+
 const createClaim = (name,amountToClaim) => {
     return {
         type:'CREATE_CLAIM',
@@ -58,13 +57,16 @@ const accountsData = (accountBalance = 100, action) => {
     return accountBalance
 }   
 
-const reduce = combineReducers({
+const rootReducer = combineReducers({
         accountsData:accountsData,
         policyData:policyData,
         claimsHistory:claimsHistory
     })
 
-const store = createStore(reduce)
+const store = createStore(rootReducer)
 
 store.dispatch(createPolicy("Alexa",20))
+store.dispatch(deletePolicy("Alexa"))
+store.dispatch(createPolicy("suresh",20))
+
 console.log(store.getState())
