@@ -1,15 +1,19 @@
 import './App.css';
-import { useSelector } from "react-redux"
+import { BrowserRouter } from 'react-router-dom';
+import { Routing } from "./Routes/Routing"
+
+
 
 function App() {
-  const counter = useSelector((state:Object) => state)
-  console.log(counter); 
-  
   return (
-    <div className="App">
-      Let's learn Redux today
-    </div>
+    <>
+      <BrowserRouter>
+        <Routing />
+      </BrowserRouter>
+    </>
+
   )
 }
 
 export default App;
+

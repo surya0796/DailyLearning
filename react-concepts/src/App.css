@@ -1,1 +1,19 @@
 
+body{
+    margin: 0;
+}
+nav {
+    background-color: aquamarine;
+    padding:20px;
+    display: flex;
+    gap: 20px;
+}
+nav a{
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+/* using CSS in JS to do the same thing */
+/* nav a.active{
+    color: white;
+} */ 
