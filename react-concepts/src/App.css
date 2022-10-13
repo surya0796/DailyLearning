@@ -13,6 +13,18 @@ nav a{
     text-decoration: none;
     color: black;
 }
+.nested-route{
+    display: flex;
+    gap: 20px;
+    padding: 5px 10px;
+}
+.nested-route a {
+    color: white;
+    text-decoration: none;
+    background-color: brown;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
 /* using CSS in JS to do the same thing */
 /* nav a.active{
     color: white;
