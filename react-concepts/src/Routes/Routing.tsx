@@ -7,7 +7,6 @@ import { Products } from '../layouts/products';
 import { Featured } from '../components/Featured';
 import { New } from '../components/New';
 import { Error } from "../layouts/ErrorPage";
-import Counter from '../components/counter/index';
 import { Users } from '../layouts/Users/index';
 import { UserDetails } from '../components/UserDetails/index';
 import { Admin } from '../components/Admin/index';
