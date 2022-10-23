@@ -1,21 +1,20 @@
 const express = require("express")
-const mangoose = require("mongoose")
 const app = express()
+require("dotenv/config")
+const mongoose = require("./database")
+const bodyParser = require("body-parser")
+const postRoute = require("./routes/posts")
+
+app.use(bodyParser.json())
+// app.use(express.json())
+// app.use(express.urlencoded());
 
 // Middlewares
-app.use("/mariguana",()=>{
-    console.log("it works")
-})
+app.use("/posts",postRoute)
 
 // Routing
 app.get("/",(req,res)=>{
     res.send("Helloo")
 })
 
-app.get("/mariguana",(req,res)=>{
-    res.send("Let's smoke weed")
-})
-
-mangoose.connect("mongodb+srv://surya0796:Qazwsxed147258@cluster0.57mat1v.mongodb.net/?retryWrites=true&w=majority",()=>console.log("chl gya"))
-// listening the server, basically a place (port) where this code will be executed on.
-app.listen(4000)
+app.listen(8080)

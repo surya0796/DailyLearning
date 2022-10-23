@@ -12,10 +12,10 @@ const c = canvas.getContext("2d")
 // c.fillRect(300,400,100,100)
 
 
-
 var xvel = 6
 var yvel = 6;
 var y = Math.random() * window.innerHeight  
+var x = Math.random() * window.innerWidth  
 
 
 
