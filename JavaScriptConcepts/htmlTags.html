@@ -7,6 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://www.img.example.com" />
     <link rel="dns-prefetch" href="https://www.img/example.com" />
+    Async and Defer
+    <!-- When the browser loads HTML and comes across a <script>...</script> tag, it can’t continue building the DOM. It must 
+        execute the script first. That leads to two important issues:
+        Scripts can’t see DOM elements below them, so they can’t add handlers etc.
+        If there’s a bulky script at the top of the page, it “blocks the page”. -->
+        DEFER:
+        <!-- Scripts with defer never block the page.
+            Scripts with defer always execute when the DOM is ready (but before DOMContentLoaded event). 
+            The page content shows up immediately.
+            DOMContentLoaded event handler waits for the deferred script. It only triggers when the script is downloaded and executed. Deferred scripts keep their relative order, just like regular scripts.-->
+        Async:
+        <!-- The async attribute means that a script is completely independent:
+            The browser doesn’t block on async scripts (like defer).
+            Other scripts don’t wait for async scripts, and async scripts don’t wait for them.
+            DOMContentLoaded and async scripts don’t wait for each other: -->
     <title>Browser and HTML tags</title>
 </head>
 

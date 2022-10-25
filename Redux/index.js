@@ -31,7 +31,7 @@ const deletePolicy = (name) => {
 }
 
 
-// Reducers quivalent of Departments in insurance example
+// Reducers equivalent of Departments in insurance example
 const  claimsHistory = (oldListofClaims =[], action) => {
     if(action.type === 'CREATE_CLAIM'){
         return [...oldListofClaims,action.payload.name] //this destructuring of old object into new object is necessary because redux compares old and new state through this and updates the stores accordingly.

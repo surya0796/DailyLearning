@@ -19,3 +19,12 @@ src folder
 |-- Routing { make separate route file inside it. }
 |
 |-- Assests {all the images, videos are put in this folder}
+
+
+
+
+
+
+
+
+this project contains react typescript react-router redux until now
