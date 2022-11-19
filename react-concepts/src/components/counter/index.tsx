@@ -7,15 +7,14 @@ type counterState = {
   }
 
 const Counter = () =>{
-    const counter = useSelector((state: counterState) => state.counterReducer)
-    const dispatchIncrement = useDispatch()
-    const dispatchDecrement = useDispatch()
+    const counter = useSelector((state:counterState) => state.counterReducer)
+    const dispatch = useDispatch()
     return (
         <>
          <div className="App">
           <div>{counter}</div>
-          <button onClick={() => dispatchIncrement(counterIncrement(1))}>Add</button>
-          <button onClick={() => dispatchDecrement(counterDecrement(1))}>Del</button>
+          <button onClick={() => dispatch(counterIncrement(1))}>Add</button>
+          <button onClick={() => dispatch(counterDecrement(1))}>Del</button>
         </div>
         </>
     )

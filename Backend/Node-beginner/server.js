@@ -1,4 +1,6 @@
 const http = require("http")
+// Node.js has a built-in module called HTTP, which allows Node.js to transfer data over the Hyper Text Transfer Protocol (HTTP). The HTTP module can create an HTTP server that listens to server ports and gives a response back to the client.z
+
 const fs = require("fs")
 const path = require("path")
 
@@ -8,7 +10,7 @@ const path = require("path")
 //     res.write('write there user')  //write a response to the client
 //     res.end()   //end the response
 // })
-
+// The task of a web server is to open a file on the server and return the content to the client.
 // server.listen(8080, ()=> console.log('server is up and running')) //the server object listens on port 8080
 
 const server = http.createServer((req,res)=>{
